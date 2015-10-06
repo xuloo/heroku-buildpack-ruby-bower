@@ -659,7 +659,7 @@ ERROR
 
       load_bower_cache
 
-      pipe("rake bower:install 2>&1")
+      pipe("ln -s /usr/bin/nodejs /usr/bin/node && rake bower:install 2>&1")
       if $?.success?
         log "bower", :status => "success"
         cache.store "vendor/assets/bower_components"
