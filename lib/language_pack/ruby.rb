@@ -659,7 +659,7 @@ ERROR
 
       load_bower_cache
 
-      pipe("cd vendor/assets && ./node_modules/bower/bin/bower install --config.storage.packages=bower_components --config.storage.registry=bower/registry --config.tmp=bower/tmp 2>&1")
+      pipe("cd vendor/assets && ../../node_modules/bower/bin/bower install --config.storage.packages=bower_components --config.storage.registry=bower/registry --config.tmp=bower/tmp 2>&1")
       if $?.success?
         log "bower", :status => "success"
         puts "Cleaning up the bower tmp."
