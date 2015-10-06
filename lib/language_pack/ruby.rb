@@ -659,9 +659,11 @@ ERROR
 
       load_bower_cache
 
-      pipe("ln -s /usr/bin/nodejs /usr/bin/node && rake bower:install 2>&1")
+      pipe("cd vendor/assets && ./node_modules/bower/bin/bower install --config.storage.packages=bower_components --config.storage.registry=bower/registry --config.tmp=bower/tmp 2>&1")
       if $?.success?
         log "bower", :status => "success"
+        puts "Cleaning up the bower tmp."
+        FileUtils.rm_rf("bower/tmp")
         cache.store "vendor/assets/bower_components"
       else
         error error_message
