@@ -659,15 +659,23 @@ ERROR
 
       load_bower_cache
 
-      pipe("./node_modules/bower/bin/bower install --config.storage.packages=vendor/bower/packages --config.storage.registry=vendor/bower/registry --config.tmp=vendor/bower/tmp 2>&1")
+      pipe("rake bower:install 2>&1")
       if $?.success?
         log "bower", :status => "success"
-        puts "Cleaning up the bower tmp."
-        FileUtils.rm_rf("vendor/bower/tmp")
-        cache.store "vendor/bower"
+        cache.store "vendor/assets/bower_components"
       else
         error error_message
       end
+      #
+      #pipe("./node_modules/bower/bin/bower install --config.storage.packages=vendor/bower/packages --config.storage.registry=vendor/bower/registry --config.tmp=vendor/bower/tmp 2>&1")
+      #if $?.success?
+      #  log "bower", :status => "success"
+      #  puts "Cleaning up the bower tmp."
+      #  FileUtils.rm_rf("vendor/bower/tmp")
+      #  cache.store "vendor/bower"
+      #else
+      #  error error_message
+      #end
     end
   end
 
